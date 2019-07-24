@@ -1,0 +1,26 @@
+server:
+  port: 8062
+
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: header-route
+        filters:
+        # 熔断的配置
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
+        - AddRequestHeader=hello, tower
+        # - PrefixPath=/tower/
+        - RewritePath=/v1/(?<segment>.*), /$\{segment}
+        predicates:
+        - Path=/v1/**
+        # lb:// 表示负载均衡地址
+        uri: lb://ZIPKIN-TOWER # http://localhost:8071
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

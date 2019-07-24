@@ -1,0 +1,15 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8020
+
+spring:
+  application:
+    name: hystrix-feign
+
+# 默认熔断不会开启，如果不熔断，即使没有服务也会创建连接
+feign:
+  hystrix:
+    enabled: true

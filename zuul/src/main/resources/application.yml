@@ -1,0 +1,20 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8030
+
+spring:
+  application:
+    name: zuul
+
+zuul:
+  routes:
+    v1:
+      path: /v1/**
+      serviceId: hystrix-ribbon
+    v2:
+      path: /v2/**
+      serviceId: hystrix-feign

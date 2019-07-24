@@ -1,0 +1,28 @@
+#  This is the default behaviour for any application which has the Spring Cloud Config Client on the classpath.
+#  When a config client starts up it binds to the Config Server (via the bootstrap configuration property spring.cloud.config.uri)
+#  and initializes Spring Environment with remote property sources.
+#  The net result of this is that all client apps that want to consume the Config Server need a bootstrap.yml
+#  (or an environment variable) with the server address in spring.cloud.config.uri (defaults to "http://localhost:8888").
+#  在classpath目录下使用spring cloud config client的任何一个应用都遵循这个默认行为
+#  当一个配置客户端 config client 启动，它会通过bootstrap配置文件进行绑定并初始化Spring的远程资源环境变量
+#  也就是说，所有的client apps想要消费配置服务端，都需要一个bootstrap.yml的配置，或者使用默认的配置 http://localhost:8888
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+#      discovery:
+#        enabled: true  # 是否是从配置中心读取文件。
+#        service-id: config-server
+      uri: http://localhost:8088  # uri在application.yml配置无效
+      name: application # 配置文件前缀，比如我们默认会使用application，如果我们的配置文件如 user-dev.yml,则需要配置为 user
+      label: master # 配置文件所在远程仓库的分支
+      profile: dev # 多个使用,分割
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8087  # 在application.yml中配置无效
+

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: zipkin-heart
+  zipkin:
+    base-url: http://localhost:9411
+server:
+  port: 8072
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+

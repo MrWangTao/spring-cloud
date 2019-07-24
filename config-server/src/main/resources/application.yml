@@ -1,0 +1,28 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: config-server
+# 说明
+#  spring.cloud.config.server.git.uri：配置git仓库地址
+#  spring.cloud.config.server.git.searchPaths：配置仓库路径
+#  spring.cloud.config.label：配置仓库的分支
+#  私有仓库需要账户密码，公有的不需要
+#  spring.cloud.config.server.git.username：访问git仓库的用户名
+#  spring.cloud.config.server.git.password：访问git仓库的用户密码
+  cloud:
+    config:
+      label: master  # 所在仓库的那个分支
+      server:
+        git:
+          uri: https://github.com/MrWangTao/spring-cloud-config/  # 仓库名称uri
+          username:
+          password:
+          search-paths: respo # 搜索路径，也就是说所在包
+
+# 注意拉取的配置会覆盖当前配置
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/

@@ -1,0 +1,19 @@
+server:
+  port: 8061
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: heart_path_route
+        uri: http://localhost:8072/
+        predicates:
+        - Path=/heart/love
+      - id: tower_path_route # 定义一个唯一的id标识符
+        uri: http://localhost:8071
+        # pridicates可以配置多个，但是只要有一个匹配上，则将会执行匹配上的条件，并中断之后的执行
+        predicates:
+        - Path=/tower
+        - Header=hello, word
+        - Path=/tower/love
+#      enabled: true
